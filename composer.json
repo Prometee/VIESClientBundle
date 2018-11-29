@@ -1,0 +1,25 @@
+{
+    "name": "prometee/vies-client-bundle",
+    "description": "European VAT Information Exchange System SOAP client bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Francis HILAIRE",
+            "email": "Prometee@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "prometee/vies-client": "dev-master",
+        "symfony/validator": "^3.4|^4.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Prometee\\VIESClientBundle\\": "."
+        }
+    }
+}

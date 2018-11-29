@@ -1,0 +1,15 @@
+services:
+
+    Prometee\VIESClient\Soap\Client\ViesSoapClient:
+        public: true
+
+    Prometee\VIESClient\Helper\ViesHelper:
+        public: true
+        arguments:
+            $soapClient: '@Prometee\VIESClient\Soap\Client\ViesSoapClient'
+
+    Prometee\VIESClientBundle\Validator\Constraints\VatNumberValidator:
+        arguments:
+            $helper: '@Prometee\VIESClient\Helper\ViesHelper'
+        tags:
+            - { name: validator.constraint_validator }
