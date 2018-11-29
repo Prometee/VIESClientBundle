@@ -11,23 +11,24 @@ See http://ec.europa.eu/taxation_customs/vies/ for more information.
 Install using Composer :
 
 ```
-$ composer require prometee/vies-client
+$ composer require prometee/vies-client-bundle
 ```
 
 ## Usage
 
+Use it as a validation constraint in an `Entity` or a `Model` class.  
+You can also use it as a `FormType` field constraint.
+
 ```php
-$loader = require_once( __DIR__.'/vendor/autoload.php');
 
-use Prometee\VIESClient\Soap\Client\ViesSoapClient;
-use Prometee\VIESClient\Soap\Model\CheckVatRequest;
+use Prometee\VIESClientBundle\Constraints\VatNumber;
 
-$checkVatRequest = new CheckVatRequest();
-$checkVatRequest->setFullVatNumber('FR12345678987');
-
-$viesSoapClient = new ViesSoapClient();
-$checkVatResponse = $viesSoapClient->checkVat($checkVatRequest);
-
-print_r($checkVatResponse);
+class User
+{
+    /**
+     * @VatNumber(message="My custom error message")
+     **/
+    private $vatNumber;
+}
 
 ```
