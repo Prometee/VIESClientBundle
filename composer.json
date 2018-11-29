@@ -12,6 +12,9 @@
     "require": {
         "php": "^7.1",
         "prometee/vies-client": "dev-master",
+        "symfony/http-kernel": "^3.4|^4.1",
+        "symfony/dependency-injection": "^3.4|^4.1",
+        "symfony/config": "^3.4|^4.1",
         "symfony/validator": "^3.4|^4.1"
     },
     "require-dev": {

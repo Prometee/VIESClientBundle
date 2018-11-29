@@ -20,8 +20,6 @@ class ViesClientExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configs = $this->processConfiguration($this->getConfiguration([], $container), $configs);
-
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(dirname(__DIR__) . '/Resources/config')
