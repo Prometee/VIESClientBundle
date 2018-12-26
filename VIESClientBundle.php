@@ -6,7 +6,7 @@ namespace Prometee\VIESClientBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ViesClientBundle extends Bundle
+class VIESClientBundle extends Bundle
 {
 
 }
