@@ -12,30 +12,20 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class VatNumberValidator extends ConstraintValidator
 {
-
     /** @var ViesHelperInterface */
     protected $helper;
 
-    /**
-     * @param ViesHelperInterface $helper
-     */
     public function __construct(ViesHelperInterface $helper)
     {
         $this->helper = $helper;
     }
 
-    /**
-     * @return ViesHelperInterface
-     */
     public function getHelper(): ViesHelperInterface
     {
         return $this->helper;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof VatNumber) {
             throw new UnexpectedTypeException($constraint, VatNumber::class);
@@ -66,9 +56,10 @@ class VatNumberValidator extends ConstraintValidator
         }
     }
 
-    protected function formatValue($value, $format = 0)
+    protected function formatValue($value, $format = 0): string
     {
         $value = VatNumberUtil::clean($value);
+
         return parent::formatValue($value, $format);
     }
 }

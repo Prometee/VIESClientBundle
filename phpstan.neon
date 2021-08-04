@@ -1,0 +1,5 @@
+parameters:
+    reportUnmatchedIgnoredErrors: false
+    excludes_analyse:
+        - 'Tests/*'
+        - 'vendor/*'

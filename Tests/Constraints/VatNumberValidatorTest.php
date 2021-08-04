@@ -8,8 +8,8 @@ use Prometee\VIESClient\Helper\ViesHelper;
 use Prometee\VIESClient\Soap\Client\ViesSoapClient;
 use Prometee\VIESClientBundle\Constraints\VatNumber;
 use Prometee\VIESClientBundle\Constraints\VatNumberValidator;
-use SoapFault;
 use stdClass;
+use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
@@ -20,12 +20,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
      */
     protected $validator;
 
-    /**
-     * @return VatNumberValidator
-     *
-     * @throws SoapFault
-     */
-    protected function createValidator()
+    protected function createValidator(): ConstraintValidatorInterface
     {
         $soapClient = new ViesSoapClient();
         $helper = new ViesHelper($soapClient);
@@ -64,7 +59,6 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
 
     /**
      * @dataProvider getValidVatNumbers
-     * @param string $number
      */
     public function testValidVatNumbers(string $number)
     {
@@ -98,8 +92,6 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
 
     /**
      * @dataProvider getInvalidNumbers
-     * @param string $number
-     * @param string $code
      */
     public function testInvalidNumbers(string $number, string $code)
     {
@@ -125,12 +117,13 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
 
     /**
      * @dataProvider getInvalidTypes
+     *
      * @param mixed $number
      */
     public function testInvalidTypes($number)
     {
         $this->expectException(UnexpectedTypeException::class);
-        
+
         $constraint = new VatNumber();
         $this->validator->validate($number, $constraint);
     }
