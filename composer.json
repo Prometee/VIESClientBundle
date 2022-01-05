@@ -11,10 +11,10 @@
     ],
     "require": {
         "prometee/vies-client": "^1.0",
-        "symfony/http-kernel": "^3.4|^4.4|^5.4|^6.0",
-        "symfony/dependency-injection": "^3.4|^4.4|^5.4|^6.0",
-        "symfony/config": "^3.4|^4.4|^5.4|^6.0",
-        "symfony/validator": "^3.4|^4.4|^5.4|^6.0"
+        "symfony/http-kernel": "^4.4|^5.4|^6.0",
+        "symfony/dependency-injection": "^4.4|^5.4|^6.0",
+        "symfony/config": "^4.4|^5.4|^6.0",
+        "symfony/validator": "^4.4|^5.4|^6.0"
     },
     "require-dev": {
         "ext-soap": "*",
