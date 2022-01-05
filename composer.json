@@ -11,16 +11,16 @@
     ],
     "require": {
         "prometee/vies-client": "^1.0",
-        "symfony/http-kernel": "^3.4|^4.4|^5.2",
-        "symfony/dependency-injection": "^3.4|^4.4|^5.2",
-        "symfony/config": "^3.4|^4.4|^5.2",
-        "symfony/validator": "^3.4|^4.4|^5.2"
+        "symfony/http-kernel": "^3.4|^4.4|^5.4",
+        "symfony/dependency-injection": "^3.4|^4.4|^5.4",
+        "symfony/config": "^3.4|^4.4|^5.4",
+        "symfony/validator": "^3.4|^4.4|^5.4"
     },
     "require-dev": {
         "ext-soap": "*",
         "phpunit/phpunit": "^8|^9",
         "symplify/easy-coding-standard": "^8|^9",
-        "phpstan/phpstan": "^0.12.82",
+        "phpstan/phpstan": "^1",
         "vimeo/psalm": "^4.3"
     },
     "autoload": {
@@ -31,12 +31,12 @@
     "scripts": {
         "analyse": [
             "@composer validate --strict",
-            "vendor/bin/ecs check .",
-            "vendor/bin/phpstan.phar analyse -c phpstan.neon -l max .",
-            "vendor/bin/psalm"
+            "@php vendor/bin/ecs check .",
+            "@php vendor/bin/phpstan.phar analyse -c phpstan.neon -l max .",
+            "@php vendor/bin/psalm"
         ],
         "fix": [
-            "vendor/bin/ecs check . --fix"
+            "@php vendor/bin/ecs check . --fix"
         ]
     },
     "extra": {

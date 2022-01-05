@@ -9,6 +9,7 @@ use Prometee\VIESClient\Util\VatNumberUtil;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use UnexpectedValueException;
 
 class VatNumberValidator extends ConstraintValidator
 {
@@ -58,6 +59,13 @@ class VatNumberValidator extends ConstraintValidator
 
     protected function formatValue($value, $format = 0): string
     {
+        if (false === is_string($value)) {
+            throw new UnexpectedValueException(sprintf(
+                'Expect string get %s !',
+                gettype($value)
+            ));
+        }
+
         $value = VatNumberUtil::clean($value);
 
         return parent::formatValue($value, $format);
