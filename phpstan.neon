@@ -1,5 +1,7 @@
 parameters:
     reportUnmatchedIgnoredErrors: false
-    excludes_analyse:
+    excludePaths:
         - 'Tests/*'
         - 'vendor/*'
+    ignoreErrors:
+        - '#Method Prometee\\VIESClientBundle\\DependencyInjection\\VIESClientExtension::load\(\) has parameter \$configs with no value type specified in iterable type array\.#'
