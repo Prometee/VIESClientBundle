@@ -26,6 +26,9 @@ class VatNumberValidator extends ConstraintValidator
         return $this->helper;
     }
 
+    /**
+     * @param mixed|string $value
+     */
     public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof VatNumber) {
@@ -57,9 +60,12 @@ class VatNumberValidator extends ConstraintValidator
         }
     }
 
+    /**
+     * @param mixed|string $value
+     */
     protected function formatValue($value, $format = 0): string
     {
-        if (false === is_string($value)) {
+        if (!is_string($value)) {
             throw new UnexpectedValueException(sprintf('Expect string get %s !', gettype($value)));
         }
 

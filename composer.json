@@ -11,10 +11,10 @@
     ],
     "require": {
         "prometee/vies-client": "^1.0",
-        "symfony/http-kernel": "^3.4|^4.4|^5.4",
-        "symfony/dependency-injection": "^3.4|^4.4|^5.4",
-        "symfony/config": "^3.4|^4.4|^5.4",
-        "symfony/validator": "^3.4|^4.4|^5.4"
+        "symfony/http-kernel": "^3.4|^4.4|^5.4|^6.0",
+        "symfony/dependency-injection": "^3.4|^4.4|^5.4|^6.0",
+        "symfony/config": "^3.4|^4.4|^5.4|^6.0",
+        "symfony/validator": "^3.4|^4.4|^5.4|^6.0"
     },
     "require-dev": {
         "ext-soap": "*",
@@ -27,17 +27,6 @@
         "psr-4": {
             "Prometee\\VIESClientBundle\\": "."
         }
-    },
-    "scripts": {
-        "analyse": [
-            "@composer validate --strict",
-            "@php vendor/bin/ecs check .",
-            "@php vendor/bin/phpstan.phar analyse -c phpstan.neon -l max .",
-            "@php vendor/bin/psalm"
-        ],
-        "fix": [
-            "@php vendor/bin/ecs check . --fix"
-        ]
     },
     "extra": {
         "branch-alias": {
