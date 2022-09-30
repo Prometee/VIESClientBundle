@@ -19,7 +19,7 @@
     "require-dev": {
         "ext-soap": "*",
         "phpunit/phpunit": "^8|^9",
-        "symplify/easy-coding-standard": "^8|^9|^10",
+        "symplify/easy-coding-standard": "^11.1.10",
         "phpstan/phpstan": "^1",
         "vimeo/psalm": "^4.3"
     },
