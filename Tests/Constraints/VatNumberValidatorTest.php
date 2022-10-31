@@ -108,7 +108,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         $this->validator->validate($number, $constraint);
 
         $this->buildViolation('myMessage')
-            ->setParameter('{{ value }}', '"'.$number.'"')
+            ->setParameter('{{ value }}', '"' . $number . '"')
             ->setCode($code)
             ->assertRaised();
     }
