@@ -25,7 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Prometee\\VIESClientBundle\\": "."
+            "Prometee\\VIESClientBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\Prometee\\VIESClientBundle\\": "Tests/"
         }
     },
     "extra": {
