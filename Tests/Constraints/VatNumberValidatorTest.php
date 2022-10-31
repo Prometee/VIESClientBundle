@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Prometee\VIESClientBundle\Tests\Constraints;
+namespace Tests\Prometee\VIESClientBundle\Constraints;
 
 use Prometee\VIESClient\Helper\ViesHelper;
 use Prometee\VIESClient\Soap\Client\DeferredViesSoapClient;
@@ -25,30 +25,30 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         return $this->createCustomValidator();
     }
 
-    private function createCustomValidator(string $wsdl = null, array $options = []): VatNumberValidator
+    private function createCustomValidator(string $wsdl = null): VatNumberValidator
     {
-        $viesSoapClientFactory = new ViesSoapClientFactory(ViesSoapClient::class, $wsdl, $options);
+        $viesSoapClientFactory = new ViesSoapClientFactory(ViesSoapClient::class, $wsdl);
         $soapClient = new DeferredViesSoapClient($viesSoapClientFactory);
         $helper = new ViesHelper($soapClient);
 
         return new VatNumberValidator($helper);
     }
 
-    public function testNullIsValid()
+    public function testNullIsValid(): void
     {
         $this->validator->validate(null, new VatNumber());
 
         $this->assertNoViolation();
     }
 
-    public function testEmptyStringIsValid()
+    public function testEmptyStringIsValid(): void
     {
         $this->validator->validate('', new VatNumber());
 
         $this->assertNoViolation();
     }
 
-    public function testValidVatNumberWithNetworkError()
+    public function testValidVatNumberWithNetworkError(): void
     {
         $wsdl = preg_replace(
             '#ec\.europa\.eu#',
@@ -66,14 +66,14 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
     /**
      * @dataProvider getValidVatNumbers
      */
-    public function testValidVatNumbers(string $number)
+    public function testValidVatNumbers(string $number): void
     {
         $this->validator->validate($number, new VatNumber());
 
         $this->assertNoViolation();
     }
 
-    public function getValidVatNumbers()
+    public function getValidVatNumbers(): array
     {
         //VAT number of L'Oreal
         return [
@@ -99,7 +99,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
     /**
      * @dataProvider getInvalidNumbers
      */
-    public function testInvalidNumbers(string $number, string $code)
+    public function testInvalidNumbers(string $number, string $code): void
     {
         $constraint = new VatNumber([
             'message' => 'myMessage',
@@ -113,7 +113,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
             ->assertRaised();
     }
 
-    public function getInvalidNumbers()
+    public function getInvalidNumbers(): array
     {
         return [
             ['0010632012100', VatNumber::WRONG_FORMAT_ERROR],
@@ -126,7 +126,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
      *
      * @param mixed $number
      */
-    public function testInvalidTypes($number)
+    public function testInvalidTypes($number): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -134,7 +134,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         $this->validator->validate($number, $constraint);
     }
 
-    public function getInvalidTypes()
+    public function getInvalidTypes(): array
     {
         return [
             [0],

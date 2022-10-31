@@ -1,0 +1,9 @@
+parameters:
+    checkGenericClassInNonGenericObjectType: false
+    reportUnmatchedIgnoredErrors: false
+    paths:
+        - src
+        - Tests
+    ignoreErrors:
+        - '#Method Prometee\\VIESClientBundle\\DependencyInjection\\VIESClientExtension::load\(\) has parameter \$configs with no value type specified in iterable type array\.#'
+        - '#Method Tests\\Prometee\\VIESClientBundle\\Constraints\\VatNumberValidatorTest::(getValidVatNumbers|getInvalidNumbers|getInvalidTypes)\(\) return type has no value type specified in iterable type array\.#'
