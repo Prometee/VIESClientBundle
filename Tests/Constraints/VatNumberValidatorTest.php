@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Prometee\VIESClientBundle\Tests\Constraints;
 
 use Prometee\VIESClient\Helper\ViesHelper;
+use Prometee\VIESClient\Soap\Client\DeferredViesSoapClient;
 use Prometee\VIESClient\Soap\Client\ViesSoapClient;
+use Prometee\VIESClient\Soap\Factory\ViesSoapClientFactory;
 use Prometee\VIESClientBundle\Constraints\VatNumber;
 use Prometee\VIESClientBundle\Constraints\VatNumberValidator;
 use stdClass;
@@ -13,16 +15,20 @@ use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
+/**
+ * @property VatNumberValidator $validator
+ */
 class VatNumberValidatorTest extends ConstraintValidatorTestCase
 {
-    /**
-     * @var VatNumberValidator
-     */
-    protected $validator;
-
     protected function createValidator(): ConstraintValidatorInterface
     {
-        $soapClient = new ViesSoapClient();
+        return $this->createCustomValidator();
+    }
+
+    private function createCustomValidator(string $wsdl = null, array $options = []): VatNumberValidator
+    {
+        $viesSoapClientFactory = new ViesSoapClientFactory(ViesSoapClient::class, $wsdl, $options);
+        $soapClient = new DeferredViesSoapClient($viesSoapClientFactory);
         $helper = new ViesHelper($soapClient);
 
         return new VatNumberValidator($helper);
@@ -44,15 +50,15 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
 
     public function testValidVatNumberWithNetworkError()
     {
-        $this->validator->getHelper()->getSoapClient()->setLocation(
-            preg_replace(
-                '#ec\.europa\.eu#',
-                'ec.europa.eueu',
-                ViesSoapClient::WSDL
-            )
+        $wsdl = preg_replace(
+            '#ec\.europa\.eu#',
+            'ec.europa.eueu',
+            ViesSoapClient::WSDL
         );
 
-        $this->validator->validate('FR10632012100', new VatNumber());
+        $validator = $this->createCustomValidator($wsdl);
+
+        $validator->validate('FR10632012100', new VatNumber());
 
         $this->assertNoViolation();
     }

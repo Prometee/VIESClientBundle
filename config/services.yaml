@@ -1,12 +1,23 @@
 services:
 
+    Prometee\VIESClient\Soap\Factory\ViesSoapClientFactory:
+        arguments:
+            $className: Prometee\VIESClient\Soap\Client\ViesSoapClient
+
     Prometee\VIESClient\Soap\Client\ViesSoapClient:
         public: true
+        alias: Prometee\VIESClient\Soap\Client\DeferredViesSoapClient
+        deprecated: 'The "%alias_id%" service alias is deprecated, use Prometee\VIESClient\Soap\Client\DeferredViesSoapClient instead.'
+
+    Prometee\VIESClient\Soap\Client\DeferredViesSoapClient:
+        public: true
+        arguments:
+            $viesSoapClientFactory: '@Prometee\VIESClient\Soap\Factory\ViesSoapClientFactory'
 
     Prometee\VIESClient\Helper\ViesHelper:
         public: true
         arguments:
-            $soapClient: '@Prometee\VIESClient\Soap\Client\ViesSoapClient'
+            $soapClient: '@Prometee\VIESClient\Soap\Client\DeferredViesSoapClient'
 
     Prometee\VIESClientBundle\Constraints\VatNumberValidator:
         arguments:
