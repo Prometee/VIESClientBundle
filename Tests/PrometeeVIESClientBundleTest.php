@@ -2,8 +2,8 @@
 
 namespace Tests\Prometee\VIESClientBundle;
 
-use Prometee\VIESClientBundle\VIESClientBundle;
 use PHPUnit\Framework\TestCase;
+use Prometee\VIESClientBundle\VIESClientBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class PrometeeVIESClientBundleTest extends TestCase
