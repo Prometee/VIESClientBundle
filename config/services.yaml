@@ -7,7 +7,6 @@ services:
     Prometee\VIESClient\Soap\Client\ViesSoapClient:
         public: true
         alias: Prometee\VIESClient\Soap\Client\DeferredViesSoapClient
-        deprecated: 'The "%alias_id%" service alias is deprecated, use Prometee\VIESClient\Soap\Client\DeferredViesSoapClient instead.'
 
     Prometee\VIESClient\Soap\Client\DeferredViesSoapClient:
         public: true
