@@ -50,7 +50,7 @@ jobs:
         with:
           php-version: "${{ matrix.php }}"
           extensions: intl
-          tools: symfony
+          tools: flex,symfony
           coverage: none
 
       -
@@ -70,16 +70,18 @@ jobs:
           key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json **/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
       -
-        name: Restrict Symfony version
+        name: Configure global composer
         if: matrix.symfony != ''
         run: |
           composer global config --no-plugins allow-plugins.symfony/flex true
-          composer global require --no-progress --no-scripts --no-plugins "symfony/flex:^1.10"
-          composer config extra.symfony.require "${{ matrix.symfony }}"
+          composer global require --no-progress --no-scripts --no-plugins "symfony/flex"
       -
         name: Install PHP dependencies
         run: composer install --no-interaction
+        env:
+          SYMFONY_REQUIRE: ${{ matrix.symfony }}
         id: end-of-setup
 
       -
