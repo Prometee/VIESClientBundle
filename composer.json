@@ -21,7 +21,7 @@
         "phpunit/phpunit": "^8|^9",
         "symplify/easy-coding-standard": "^8|^9|^10|^11",
         "phpstan/phpstan": "^1",
-        "vimeo/psalm": "^4.3"
+        "vimeo/psalm": "^5.4"
     },
     "autoload": {
         "psr-4": {
