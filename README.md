@@ -27,7 +27,7 @@ use Prometee\VIESClientBundle\Constraints\VatNumber;
 
 class User
 {
-     #[VatNumber(message: "My custom error message")]
+    #[VatNumber(message: "My custom error message")]
     private $vatNumber;
 }
 
