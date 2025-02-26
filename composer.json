@@ -34,9 +34,16 @@
             "Tests\\Prometee\\VIESClientBundle\\": "tests/"
         }
     },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "symfony/flex": false,
+            "symfony/runtime": true
+        }
+    },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }
