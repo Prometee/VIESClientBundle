@@ -13,23 +13,12 @@ use UnexpectedValueException;
 
 class VatNumberValidator extends ConstraintValidator
 {
-    /** @var ViesHelperInterface */
-    protected $helper;
-
-    public function __construct(ViesHelperInterface $helper)
-    {
-        $this->helper = $helper;
+    public function __construct(
+        protected ViesHelperInterface $helper,
+    ) {
     }
 
-    public function getHelper(): ViesHelperInterface
-    {
-        return $this->helper;
-    }
-
-    /**
-     * @param mixed|string $value
-     */
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof VatNumber) {
             throw new UnexpectedTypeException($constraint, VatNumber::class);
@@ -60,10 +49,7 @@ class VatNumberValidator extends ConstraintValidator
         }
     }
 
-    /**
-     * @param mixed|string $value
-     */
-    protected function formatValue($value, $format = 0): string
+    protected function formatValue(mixed $value, int $format = 0): string
     {
         if (!is_string($value)) {
             throw new UnexpectedValueException(sprintf('Expect string get %s !', gettype($value)));

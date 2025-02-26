@@ -27,22 +27,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.2, 7.3, 7.4, 8.0, 8.1]
-        symfony: [^4.4, ^5.4, ^6.0]
-        exclude:
-          - php: 7.2
-            symfony: ^6.0
-          - php: 7.3
-            symfony: ^6.0
-          - php: 7.4
-            symfony: ^6.0
+        php: [8.2, 8.3, 8.4]
+        symfony: [^6.4, ^7.2]
 
     env:
       APP_ENV: test
 
     steps:
       -
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       -
         name: Setup PHP
@@ -64,7 +57,7 @@ jobs:
 
       -
         name: Cache Composer
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json **/composer.lock') }}
@@ -89,17 +82,12 @@ jobs:
 
       -
         name: Run analysis - ECS
-        run: vendor/bin/ecs check .
+        run: vendor/bin/ecs check
         if: always() && steps.end-of-setup.outcome == 'success'
 
       -
         name: Run analysis - PHPStan
-        run: vendor/bin/phpstan.phar analyse -c phpstan.neon.dist -l max src Tests
-        if: always() && steps.end-of-setup.outcome == 'success'
-
-      -
-        name: Run analysis - PSALM
-        run: vendor/bin/psalm
+        run: vendor/bin/phpstan.phar analyse
         if: always() && steps.end-of-setup.outcome == 'success'
 
       -

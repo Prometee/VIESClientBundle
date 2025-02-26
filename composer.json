@@ -11,17 +11,18 @@
     ],
     "require": {
         "prometee/vies-client": "^1.0",
-        "symfony/http-kernel": "^4.4|^5.4|^6.0",
-        "symfony/dependency-injection": "^4.4|^5.4|^6.0",
-        "symfony/config": "^4.4|^5.4|^6.0",
-        "symfony/validator": "^4.4|^5.4|^6.0"
+        "symfony/http-kernel": "^6.4|^7.2",
+        "symfony/dependency-injection": "^6.4|^7.2",
+        "symfony/config": "^6.4|^7.2",
+        "symfony/validator": "^6.4|^7.2"
     },
     "require-dev": {
         "ext-soap": "*",
-        "phpunit/phpunit": "^8|^9",
-        "symplify/easy-coding-standard": "^8|^9|^10|^11",
-        "phpstan/phpstan": "^1",
-        "vimeo/psalm": "^4.3"
+        "phpunit/phpunit": "^10|^11",
+        "symplify/easy-coding-standard": "^12",
+        "phpstan/extension-installer": "^1.0",
+        "phpstan/phpstan": "^2",
+        "phpstan/phpstan-symfony": "^2"
     },
     "autoload": {
         "psr-4": {
@@ -30,12 +31,19 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Prometee\\VIESClientBundle\\": "Tests/"
+            "Tests\\Prometee\\VIESClientBundle\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "symfony/flex": false,
+            "symfony/runtime": true
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }
