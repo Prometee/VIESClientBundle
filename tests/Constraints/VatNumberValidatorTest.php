@@ -117,12 +117,8 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @dataProvider getInvalidTypes
-     *
-     * @param mixed $number
-     */
-    public function testInvalidTypes($number): void
+    #[DataProvider('getInvalidTypes')]
+    public function testInvalidTypes(mixed $number): void
     {
         $this->expectException(UnexpectedTypeException::class);
 
@@ -130,7 +126,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         $this->validator->validate($number, $constraint);
     }
 
-    public function getInvalidTypes(): array
+    public static function getInvalidTypes(): array
     {
         return [
             [0],

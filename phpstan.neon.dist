@@ -8,5 +8,6 @@ parameters:
         - tests
     ignoreErrors:
         - message: '/Method Tests\\Prometee\\VIESClientBundle\\Constraints\\VatNumberValidatorTest::(getValidVatNumbers|getInvalidNumbers|getInvalidTypes)\(\) return type has no value type specified in iterable type array\./'
-          paths:
-            - tests/Constraints/VatNumberValidatorTest.php
+          path: tests/Constraints/VatNumberValidatorTest.php
+        - message: '/PHPDoc tag @var for constant Prometee\\VIESClientBundle\\Constraints\\VatNumber::ERROR_NAMES with type array<string, string> is incompatible with value array\{[^\}]+\}\./'
+          path: src/Constraints/VatNumber.php
