@@ -1,9 +1,12 @@
 parameters:
-    checkGenericClassInNonGenericObjectType: false
     reportUnmatchedIgnoredErrors: false
+
+    level: max
+
     paths:
         - src
-        - Tests
+        - tests
     ignoreErrors:
-        - '#Method Prometee\\VIESClientBundle\\DependencyInjection\\VIESClientExtension::load\(\) has parameter \$configs with no value type specified in iterable type array\.#'
-        - '#Method Tests\\Prometee\\VIESClientBundle\\Constraints\\VatNumberValidatorTest::(getValidVatNumbers|getInvalidNumbers|getInvalidTypes)\(\) return type has no value type specified in iterable type array\.#'
+        - message: '/Method Tests\\Prometee\\VIESClientBundle\\Constraints\\VatNumberValidatorTest::(getValidVatNumbers|getInvalidNumbers|getInvalidTypes)\(\) return type has no value type specified in iterable type array\./'
+          paths:
+            - tests/Constraints/VatNumberValidatorTest.php

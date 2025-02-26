@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Tests\Prometee\VIESClientBundle\Constraints;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Prometee\VIESClient\Helper\ViesHelper;
 use Prometee\VIESClient\Soap\Client\DeferredViesSoapClient;
 use Prometee\VIESClient\Soap\Client\ViesSoapClient;
 use Prometee\VIESClient\Soap\Factory\ViesSoapClientFactory;
 use Prometee\VIESClientBundle\Constraints\VatNumber;
 use Prometee\VIESClientBundle\Constraints\VatNumberValidator;
-use stdClass;
 use Symfony\Component\Validator\ConstraintValidatorInterface;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
- * @property VatNumberValidator $validator
+ * @extends ConstraintValidatorTestCase<VatNumberValidator>
  */
 class VatNumberValidatorTest extends ConstraintValidatorTestCase
 {
@@ -63,9 +63,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    /**
-     * @dataProvider getValidVatNumbers
-     */
+    #[DataProvider('getValidVatNumbers')]
     public function testValidVatNumbers(string $number): void
     {
         $this->validator->validate($number, new VatNumber());
@@ -73,7 +71,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         $this->assertNoViolation();
     }
 
-    public function getValidVatNumbers(): array
+    public static function getValidVatNumbers(): array
     {
         //VAT number of L'Oreal
         return [
@@ -96,9 +94,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         ];
     }
 
-    /**
-     * @dataProvider getInvalidNumbers
-     */
+    #[DataProvider('getInvalidNumbers')]
     public function testInvalidNumbers(string $number, string $code): void
     {
         $constraint = new VatNumber([
@@ -113,7 +109,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
             ->assertRaised();
     }
 
-    public function getInvalidNumbers(): array
+    public static function getInvalidNumbers(): array
     {
         return [
             ['0010632012100', VatNumber::WRONG_FORMAT_ERROR],
@@ -140,7 +136,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
             [0],
             [123],
             [[]],
-            [new stdClass()],
+            [new \stdClass()],
         ];
     }
 }
