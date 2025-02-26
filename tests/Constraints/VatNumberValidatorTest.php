@@ -25,7 +25,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
         return $this->createCustomValidator();
     }
 
-    private function createCustomValidator(string $wsdl = null): VatNumberValidator
+    private function createCustomValidator(?string $wsdl = null): VatNumberValidator
     {
         $viesSoapClientFactory = new ViesSoapClientFactory(ViesSoapClient::class, $wsdl);
         $soapClient = new DeferredViesSoapClient($viesSoapClientFactory);
