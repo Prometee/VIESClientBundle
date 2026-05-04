@@ -14,7 +14,7 @@
         "symfony/http-kernel": "^6.4|^7.2",
         "symfony/dependency-injection": "^6.4|^7.2",
         "symfony/config": "^6.4|^7.2",
-        "symfony/validator": "^6.4|^7.2"
+        "symfony/validator": "^8.0.9"
     },
     "require-dev": {
         "ext-soap": "*",
