@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "ext-soap": "*",
-        "phpunit/phpunit": "^10|^11",
+        "phpunit/phpunit": "^13.1.11",
         "symplify/easy-coding-standard": "^12",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^2",
