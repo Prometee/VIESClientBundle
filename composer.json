@@ -13,7 +13,7 @@
         "prometee/vies-client": "^1.0",
         "symfony/http-kernel": "^6.4|^7.2",
         "symfony/dependency-injection": "^6.4|^7.2",
-        "symfony/config": "^6.4|^7.2",
+        "symfony/config": "^8.1.0",
         "symfony/validator": "^6.4|^7.2"
     },
     "require-dev": {
