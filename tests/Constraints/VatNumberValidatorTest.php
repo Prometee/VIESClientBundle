@@ -97,9 +97,7 @@ class VatNumberValidatorTest extends ConstraintValidatorTestCase
     #[DataProvider('getInvalidNumbers')]
     public function testInvalidNumbers(string $number, string $code): void
     {
-        $constraint = new VatNumber([
-            'message' => 'myMessage',
-        ]);
+        $constraint = new VatNumber(message: 'myMessage');
 
         $this->validator->validate($number, $constraint);
 
