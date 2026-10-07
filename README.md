@@ -10,6 +10,8 @@ See http://ec.europa.eu/taxation_customs/vies/ for more information.
 
 ## Installation
 
+Requires Symfony 7.4 or 8.1 and later within those major versions. Symfony 6.4 is no longer supported.
+
 Install using Composer :
 
 ```
@@ -17,6 +19,8 @@ $ composer require prometee/vies-client-bundle
 ```
 
 ## Usage
+
+Configure `VatNumber` with named arguments (`message`, `groups`, `payload`); the legacy options-array syntax is no longer supported.
 
 Use it as a validation constraint in an `Entity` or a `Model` class.  
 You can also use it as a `FormType` field constraint.

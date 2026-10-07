@@ -21,4 +21,17 @@ class VatNumber extends Constraint
     ];
 
     public string $message = 'prometee_vies_client.vat_number.invalid';
+
+    /**
+     * @param string[]|null $groups
+     */
+    public function __construct(
+        ?string $message = null,
+        ?array $groups = null,
+        mixed $payload = null,
+    ) {
+        parent::__construct(null, $groups, $payload);
+
+        $this->message = $message ?? $this->message;
+    }
 }

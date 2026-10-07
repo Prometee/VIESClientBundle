@@ -11,15 +11,15 @@
     ],
     "require": {
         "prometee/vies-client": "^1.0",
-        "symfony/http-kernel": "^6.4|^7.2",
-        "symfony/dependency-injection": "^6.4|^7.2",
-        "symfony/config": "^6.4|^7.2",
-        "symfony/validator": "^6.4|^7.2"
+        "symfony/http-kernel": "^7.4|^8.1",
+        "symfony/dependency-injection": "^7.4|^8.1",
+        "symfony/config": "^7.4|^8.1",
+        "symfony/validator": "^7.4|^8.1"
     },
     "require-dev": {
         "ext-soap": "*",
-        "phpunit/phpunit": "^10|^11",
-        "symplify/easy-coding-standard": "^12",
+        "phpunit/phpunit": "^11|^12|^13",
+        "symplify/easy-coding-standard": "^13",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^2",
         "phpstan/phpstan-symfony": "^2"
